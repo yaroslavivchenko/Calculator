@@ -22,6 +22,8 @@ public class window extends JFrame implements WindowListener, ActionListener {
     private JButton result = new JButton("=");
     private JButton ad = new JButton("+");
     private JButton sub = new JButton("-");
+    private JButton multi = new JButton("*");
+    private JButton div = new JButton("/");
     private JButton dell = new JButton("C");
     private JButton Cancel = new JButton("D");
     private String text = "";
@@ -110,6 +112,16 @@ public class window extends JFrame implements WindowListener, ActionListener {
         sub.setSize(60, 60);
         sub.setLocation(105, 150);
         sub.setVisible(true);
+        multi.setFont(ex);
+        multi.setSize(60, 60);
+        multi.setLocation(185, 150);
+        multi.setVisible(true);
+        add(multi);
+        div.setFont(ex);
+        div.setSize(60, 60);
+        div.setLocation(265, 150);
+        div.setVisible(true);
+        add(div);
         add(sub);
         Cancel.setFont(ex);
         Cancel.setSize(60, 60);
@@ -130,6 +142,8 @@ public class window extends JFrame implements WindowListener, ActionListener {
         result.addActionListener(this);
         ad.addActionListener(this);
         sub.addActionListener(this);
+        multi.addActionListener(this);
+        div.addActionListener(this);
 
     }
 
@@ -193,7 +207,18 @@ public class window extends JFrame implements WindowListener, ActionListener {
             text = "";
             z = '-';
         }
-
+        if (e.getSource() == multi) {
+            a = Integer.parseInt(text);
+            f.setText((text+multi.getText()));
+            text = "";
+            z = '*';
+        }
+        if (e.getSource() == div) {
+            a = Integer.parseInt(text);
+            f.setText((text+div.getText()));
+            text = "";
+            z = '/';
+        }
 
         if (e.getSource() == result) {
             if (z=='+'){
@@ -203,6 +228,16 @@ public class window extends JFrame implements WindowListener, ActionListener {
             if (z=='-'){
                 b=Integer.parseInt(text);
                 f.setText(String.valueOf(a-b));
+            }
+        }
+        if (e.getSource() == result) {
+            if (z=='*'){
+                b=Integer.parseInt(text);
+                f.setText(String.valueOf(a*b));
+            }
+            if (z=='/'){
+                b=Integer.parseInt(text);
+                f.setText(String.valueOf(a/b));
             }
         }
 
